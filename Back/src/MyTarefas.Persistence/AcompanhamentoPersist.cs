@@ -14,12 +14,12 @@ namespace MyTarefas.Persistence
             _context = context;
         }
 
-        public async Task<Acompanhamento> GetAcompanhamentoByIdAsync(int cardId, int acompanhamentoId)
+        public async Task<Acompanhamento> GetAcompanhamentoByIdAsync(int acompanhamentoId)
         {
             IQueryable<Acompanhamento> query = _context.Acompanhamentos;
 
             query = query.AsNoTracking()
-                         .Where(ac => ac.CardId == cardId && ac.Id == acompanhamentoId);
+                         .Where(ac => ac.Id == acompanhamentoId);
 
             return await query.FirstOrDefaultAsync();
         }

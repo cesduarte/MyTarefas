@@ -23,5 +23,16 @@ namespace MyTarefas.Persistence
 
             return await query.ToArrayAsync();
         }
+
+        public async Task<Tarefa> GetByTarefaIdAsync(int tarefaId)
+        {
+             IQueryable<Tarefa> query = _context.Tarefas
+            .Include(c => c.Cards);
+
+            query = query.AsNoTracking()
+            .Where(t => t.Id == tarefaId);                         
+
+            return await query.FirstOrDefaultAsync();
+        }
     }
 }

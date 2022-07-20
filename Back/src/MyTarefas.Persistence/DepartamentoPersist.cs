@@ -22,5 +22,15 @@ namespace MyTarefas.Persistence
 
             return await query.ToArrayAsync();
         }
+
+        public async Task<Departamento> GetByDepartamentoIdAsync(int departamentoId)
+        {
+            IQueryable<Departamento> query = _context.Departamentos;
+
+            query = query.AsNoTracking()
+                         .Where(c => c.Id == departamentoId);
+
+            return await query.FirstOrDefaultAsync();
+        }
     }
 }

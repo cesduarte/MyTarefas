@@ -11,6 +11,7 @@ namespace MyTarefas.Domain
         public DateTime DataPrevisao { get; set; }
         public Departamento? Departamento { get; set; }
         public Acompanhamento? Acompanhamento { get; set; } 
+        public int TarefaId { get; set; }
 
 
     }

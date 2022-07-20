@@ -6,7 +6,7 @@ namespace MyTarefas.Persistence.Contrato
     {
          Task<Acompanhamento[]> GetAllByCardIdAsync(int cardId); 
 
-         Task<Acompanhamento> GetAcompanhamentoByIdAsync(int cardId, int acompanhamentoId); 
+         Task<Acompanhamento> GetAcompanhamentoByIdAsync(int acompanhamentoId); 
 
     }
 }

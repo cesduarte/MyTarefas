@@ -4,7 +4,7 @@ using MyTarefas.Persistence.Contrato;
 
 namespace MyTarefas.Application
 {
-    public class TarefaService: ITarefaService
+    public class TarefaService : ITarefaService
     {
         private readonly IGeralPersist _geralPersist;
 
@@ -16,24 +16,77 @@ namespace MyTarefas.Application
             _geralPersist = geralPersist;
         }
 
-        public Task<Tarefa> AddTarefa(int tarefaId, Tarefa model)
+        public async Task<Tarefa> AddTarefa(int tarefaId, Tarefa model)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                _geralPersist.Add<Tarefa>(model);
+
+                if (await _geralPersist.SaveChangesAsync())
+                {
+                    var TarefaRetorno = await _tarefaPersist.GetByTarefaIdAsync(model.Id);
+
+                    return TarefaRetorno;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<Tarefa> UpdateTarefa(int tarefaId, Tarefa model)
+        {
+            try
+            {
+                var tarefa = await _tarefaPersist.GetByTarefaIdAsync(tarefaId);
+
+                if (tarefa == null) return null;
+
+                model.Id = tarefa.Id;
+
+                _geralPersist.Update<Tarefa>(tarefa);
+
+                if (await _geralPersist.SaveChangesAsync())
+                {
+                    var tarefaRetorno = await _tarefaPersist.GetByTarefaIdAsync(model.Id);
+
+                    return tarefaRetorno;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<bool> DeleteTarefa(int tarefaId)
+        {
+            try
+            {
+                var tarefa = await _tarefaPersist.GetByTarefaIdAsync(tarefaId);
+
+                if (tarefa == null) throw new Exception("Tarefa não encontrado.");
+
+                _geralPersist.Delete<Tarefa>(tarefa);
+
+                return await _geralPersist.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        public Task<bool> DeleteTarefa(int tarefaId)
+        public async Task<Tarefa[]> GetAllTarefasAsync()
         {
-            throw new NotImplementedException();
+            var tarefa = await _tarefaPersist.GetAllTarefasAsync();
+
+            if (tarefa == null) return null;
+
+            return tarefa;
         }
 
-        public Task<Tarefa[]> GetAllTarefasAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Tarefa> UpdateTarefa(int tarefaId, Tarefa model)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

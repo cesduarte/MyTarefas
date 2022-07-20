@@ -6,5 +6,7 @@ namespace MyTarefas.Persistence.Contrato
     public interface ITarefaPersist
     {
          Task<Tarefa[]> GetAllTarefasAsync();
+
+         Task<Tarefa> GetByTarefaIdAsync(int tarefaId);
     }
 }

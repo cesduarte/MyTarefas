@@ -23,5 +23,10 @@ namespace MyTarefas.Persistence
 
             return await query.ToArrayAsync();
         }
+
+        public Task<Usuario> GetByUsuarioIdAsync(int acompanhamentoId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

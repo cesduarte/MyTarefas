@@ -19,7 +19,7 @@ namespace MyTarefas.Persistence
                 .Include(d => d.Departamento)
                 .Include(ac => ac.Acompanhamento);
 
-            query = query.AsNoTracking().Where(c => c.Id == tarefaId);                         
+            query = query.AsNoTracking().Where(c => c.TarefaId == tarefaId);                         
 
             return await query.ToArrayAsync();
         }
@@ -33,6 +33,17 @@ namespace MyTarefas.Persistence
             query = query.AsNoTracking();                         
 
             return await query.ToArrayAsync();
+        }
+
+        public async Task<Card> GetByCardIdAsync(int cardId)
+        {
+            IQueryable<Card> query = _context.Cards
+                .Include(d => d.Departamento)
+                .Include(ac => ac.Acompanhamento);
+
+            query = query.AsNoTracking().Where(c => c.Id == cardId);                         
+
+            return await query.FirstOrDefaultAsync();
         }
     }
 }

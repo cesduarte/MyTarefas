@@ -7,6 +7,6 @@ namespace MyTarefas.Application.Contratos
         Task<Departamento> AddDepartamento(int departamentoId, Departamento model);        
         Task<Departamento> UpdateDepartamento(int departamentoId, Departamento model);
         Task<bool> DeleteDepartamento(int departamentoId);
-        Task<Departamento[]> GetAllByCardIdAsync(int cardId); 
+        Task<Departamento[]> GetAllByCardIdAsync(int cardId);        
     }
 }

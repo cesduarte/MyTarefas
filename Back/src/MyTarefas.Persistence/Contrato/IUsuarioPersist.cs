@@ -6,5 +6,7 @@ namespace MyTarefas.Persistence.Contrato
     {
        Task<Usuario[]> GetAllByAcompanhamentoIdAsync(int acompanhamentoId); 
 
+       Task<Usuario> GetByUsuarioIdAsync(int acompanhamentoId); 
+
     }
 }

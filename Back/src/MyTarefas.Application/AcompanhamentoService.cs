@@ -16,17 +16,17 @@ namespace MyTarefas.Application
             _geralPersist = geralPersist;
         }
 
-        public async Task<Acompanhamento> AddAcompanhamento(int cardId, Acompanhamento model)
+        public async Task<Acompanhamento?> AddAcompanhamento(int cardId, Acompanhamento model)
         {
             try
             {
-                 model.CardId = cardId;
+                model.CardId = cardId;
 
                 _geralPersist.Add<Acompanhamento>(model);
 
                 if (await _geralPersist.SaveChangesAsync())
                 {
-                    var acompanhamentoRetorno = await _acompanhamentoPersist.GetAcompanhamentoByIdAsync(cardId, model.Id);
+                    var acompanhamentoRetorno = await _acompanhamentoPersist.GetAcompanhamentoByIdAsync(model.Id);
 
                     return acompanhamentoRetorno;
                 }
@@ -38,14 +38,49 @@ namespace MyTarefas.Application
             }
         }
 
-        public Task<bool> DeleteAcompanhamento(int acompanhamentoId)
+        public async Task<bool> DeleteAcompanhamento(int acompanhamentoId)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                var acompanhamento = await _acompanhamentoPersist.GetAcompanhamentoByIdAsync(acompanhamentoId);
+
+                if (acompanhamento == null) throw new Exception("Acompanhamento não encontrado.");
+
+                _geralPersist.Delete<Acompanhamento>(acompanhamento);
+
+                return await _geralPersist.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        public Task<Acompanhamento> UpdateAcompanhamento(int acompanhamentoId, Acompanhamento model)
+        public async Task<Acompanhamento?> UpdateAcompanhamento(int acompanhamentoId, Acompanhamento model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var acompanhamento = await _acompanhamentoPersist.GetAcompanhamentoByIdAsync(acompanhamentoId);
+
+                if (acompanhamento == null) return null;
+
+                model.Id = acompanhamento.Id;                
+
+                _geralPersist.Update<Acompanhamento>(acompanhamento);
+
+                if (await _geralPersist.SaveChangesAsync())
+                {
+                    var acompanhamentoRetorno = await _acompanhamentoPersist.GetAcompanhamentoByIdAsync(model.Id);
+
+                    return acompanhamentoRetorno;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

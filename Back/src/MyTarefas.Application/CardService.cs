@@ -4,7 +4,7 @@ using MyTarefas.Persistence.Contrato;
 
 namespace MyTarefas.Application
 {
-    public class CardService: ICardService
+    public class CardService : ICardService
     {
         private readonly IGeralPersist _geralPersist;
 
@@ -16,29 +16,86 @@ namespace MyTarefas.Application
             _geralPersist = geralPersist;
         }
 
-        public Task<Card> AddCard(int cardId, Card model)
+        public async Task<Card> AddCard(Card model)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                _geralPersist.Add<Card>(model);
+
+                if (await _geralPersist.SaveChangesAsync())
+                {
+                    var cardRetorno = await _cardPersist.GetByCardIdAsync(model.Id);
+
+                    return cardRetorno;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        public Task<bool> DeleteCard(int cardId)
+        public async Task<Card> UpdateCard(int cardId, Card model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var card = await _cardPersist.GetByCardIdAsync(cardId);
+
+                if (card == null) return null;
+
+                model.Id = card.Id;
+
+                _geralPersist.Update<Card>(card);
+
+                if (await _geralPersist.SaveChangesAsync())
+                {
+                    var cardRetorno = await _cardPersist.GetByCardIdAsync(model.Id);
+
+                    return cardRetorno;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<bool> DeleteCard(int cardId)
+        {
+            try
+            {
+                var card = await _cardPersist.GetByCardIdAsync(cardId);
+
+                if (card == null) throw new Exception("card não encontrado.");
+
+                _geralPersist.Delete<Card>(card);
+
+                return await _geralPersist.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        public Task<Card[]> GetAllByTarefaIdAsync(int tarefaId)
+        public async Task<Card[]> GetAllByTarefaIdAsync(int tarefaId)
         {
-            throw new NotImplementedException();
+            var card = await _cardPersist.GetAllByTarefaIdAsync(tarefaId);
+
+            if (card == null) return null;
+
+            return card;
         }
 
-        public Task<Card[]> GetAllCardsAsync()
+        public async Task<Card[]> GetAllCardsAsync()
         {
-            throw new NotImplementedException();
-        }
+            var card = await _cardPersist.GetAllCardsAsync();
 
-        public Task<Card> UpdateCard(int cardId, Card model)
-        {
-            throw new NotImplementedException();
+            if (card == null) return null;
+
+            return card;
         }
     }
 }
