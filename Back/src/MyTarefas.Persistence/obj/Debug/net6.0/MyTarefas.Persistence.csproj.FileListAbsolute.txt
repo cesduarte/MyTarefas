@@ -1,0 +1,17 @@
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Persistence\bin\Debug\net6.0\MyTarefas.Persistence.deps.json
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Persistence\bin\Debug\net6.0\MyTarefas.Persistence.dll
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Persistence\bin\Debug\net6.0\MyTarefas.Persistence.pdb
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Persistence\bin\Debug\net6.0\MyTarefas.Domain.dll
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Persistence\bin\Debug\net6.0\MyTarefas.Domain.pdb
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Persistence\obj\Debug\net6.0\MyTarefas.Persistence.csproj.AssemblyReference.cache
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Persistence\obj\Debug\net6.0\MyTarefas.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Persistence\obj\Debug\net6.0\MyTarefas.Persistence.AssemblyInfoInputs.cache
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Persistence\obj\Debug\net6.0\MyTarefas.Persistence.AssemblyInfo.cs
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Persistence\obj\Debug\net6.0\MyTarefas.Persistence.csproj.CoreCompileInputs.cache
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Persistence\obj\Debug\net6.0\MyTarefas.Persistence.csproj.CopyComplete
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Persistence\obj\Debug\net6.0\MyTarefas.Persistence.dll
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Persistence\obj\Debug\net6.0\refint\MyTarefas.Persistence.dll
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Persistence\obj\Debug\net6.0\MyTarefas.Persistence.pdb
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Persistence\obj\Debug\net6.0\ref\MyTarefas.Persistence.dll
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Persistence\bin\Debug\net6.0\MyTarefas.Persistence.runtimeconfig.json
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Persistence\obj\Debug\net6.0\MyTarefas.Persistence.genruntimeconfig.cache

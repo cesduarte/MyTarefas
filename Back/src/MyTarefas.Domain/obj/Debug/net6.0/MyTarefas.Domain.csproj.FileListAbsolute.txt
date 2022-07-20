@@ -1,0 +1,12 @@
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Domain\bin\Debug\net6.0\MyTarefas.Domain.deps.json
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Domain\bin\Debug\net6.0\MyTarefas.Domain.dll
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Domain\bin\Debug\net6.0\MyTarefas.Domain.pdb
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Domain\obj\Debug\net6.0\MyTarefas.Domain.csproj.AssemblyReference.cache
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Domain\obj\Debug\net6.0\MyTarefas.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Domain\obj\Debug\net6.0\MyTarefas.Domain.AssemblyInfoInputs.cache
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Domain\obj\Debug\net6.0\MyTarefas.Domain.AssemblyInfo.cs
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Domain\obj\Debug\net6.0\MyTarefas.Domain.csproj.CoreCompileInputs.cache
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Domain\obj\Debug\net6.0\MyTarefas.Domain.dll
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Domain\obj\Debug\net6.0\refint\MyTarefas.Domain.dll
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Domain\obj\Debug\net6.0\MyTarefas.Domain.pdb
+C:\Desenvolvimento\MyTarefas\Back\src\MyTarefas.Domain\obj\Debug\net6.0\ref\MyTarefas.Domain.dll
