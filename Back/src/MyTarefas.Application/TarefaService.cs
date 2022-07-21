@@ -16,7 +16,7 @@ namespace MyTarefas.Application
             _geralPersist = geralPersist;
         }
 
-        public async Task<Tarefa> AddTarefa(int tarefaId, Tarefa model)
+        public async Task<Tarefa> AddTarefa(Tarefa model)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace MyTarefas.Application
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<Tarefa> UpdateTarefa(int tarefaId, Tarefa model)
+        public async Task<Tarefa> UpdateTarefa(long tarefaId, Tarefa model)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace MyTarefas.Application
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<bool> DeleteTarefa(int tarefaId)
+        public async Task<bool> DeleteTarefa(long tarefaId)
         {
             try
             {

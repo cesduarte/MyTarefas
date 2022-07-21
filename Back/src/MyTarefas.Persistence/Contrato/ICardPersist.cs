@@ -6,9 +6,9 @@ namespace MyTarefas.Persistence.Contrato
     {
         Task<Card[]> GetAllCardsAsync(); 
 
-        Task<Card[]> GetAllByTarefaIdAsync(int tarefaId); 
+        Task<Card[]> GetAllByTarefaIdAsync(long tarefaId); 
 
-        Task<Card> GetByCardIdAsync(int cardId); 
+        Task<Card> GetByCardIdAsync(long cardId); 
 
     }
 }

@@ -5,11 +5,11 @@ namespace MyTarefas.Application.Contratos
     public interface ICardService
     {
         Task<Card> AddCard(Card model);        
-        Task<Card> UpdateCard(int cardId, Card model);
-        Task<bool> DeleteCard(int cardId);
+        Task<Card> UpdateCard(long cardId, Card model);
+        Task<bool> DeleteCard(long cardId);
 
         Task<Card[]> GetAllCardsAsync(); 
 
-        Task<Card[]> GetAllByTarefaIdAsync(int tarefaId); 
+        Task<Card[]> GetAllByTarefaIdAsync(long tarefaId); 
     }
 }

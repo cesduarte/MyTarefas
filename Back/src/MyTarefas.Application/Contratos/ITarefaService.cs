@@ -4,9 +4,9 @@ namespace MyTarefas.Application.Contratos
 {
     public interface ITarefaService
     {
-        Task<Tarefa> AddTarefa(int tarefaId, Tarefa model);        
-        Task<Tarefa> UpdateTarefa(int tarefaId, Tarefa model);
-        Task<bool> DeleteTarefa(int tarefaId);
+        Task<Tarefa> AddTarefa(Tarefa model);        
+        Task<Tarefa> UpdateTarefa(long tarefaId, Tarefa model);
+        Task<bool> DeleteTarefa(long tarefaId);
         Task<Tarefa[]> GetAllTarefasAsync();
     }
 }

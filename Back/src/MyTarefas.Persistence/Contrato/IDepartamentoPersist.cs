@@ -4,8 +4,8 @@ namespace MyTarefas.Persistence.Contrato
 {
     public interface IDepartamentoPersist
     {
-        Task<Departamento[]> GetAllByCardIdAsync(int cardId); 
+        Task<Departamento[]> GetAllByCardIdAsync(long cardId); 
 
-        Task<Departamento> GetByDepartamentoIdAsync(int departamentoId);  
+        Task<Departamento> GetByDepartamentoIdAsync(long departamentoId);  
     }
 }

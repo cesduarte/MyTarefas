@@ -16,7 +16,7 @@ namespace MyTarefas.Application
             _geralPersist = geralPersist;
         }
 
-        public async Task<Departamento> AddDepartamento(int departamentoId, Departamento model)
+        public async Task<Departamento> AddDepartamento(long departamentoId, Departamento model)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace MyTarefas.Application
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<Departamento> UpdateDepartamento(int departamentoId, Departamento model)
+        public async Task<Departamento> UpdateDepartamento(long departamentoId, Departamento model)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace MyTarefas.Application
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<bool> DeleteDepartamento(int departamentoId)
+        public async Task<bool> DeleteDepartamento(long departamentoId)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace MyTarefas.Application
             }
         }
 
-        public async Task<Departamento[]> GetAllByCardIdAsync(int cardId)
+        public async Task<Departamento[]> GetAllByCardIdAsync(long cardId)
         {
            var departamento  = await _departamentoPersist.GetAllByCardIdAsync(cardId);
 

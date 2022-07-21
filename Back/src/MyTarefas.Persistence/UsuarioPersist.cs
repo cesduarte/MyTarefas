@@ -14,17 +14,16 @@ namespace MyTarefas.Persistence
             _context = context;
         }
 
-        public async Task<Usuario[]> GetAllByAcompanhamentoIdAsync(int acompanhamentoId)
+        public async Task<Usuario[]> GetAllByAcompanhamentoIdAsync(long acompanhamentoId)
         {
-              IQueryable<Usuario> query = _context.Usuarios;
+            IQueryable<Usuario> query = _context.Usuarios;
 
-            query = query.AsNoTracking()
-                         .Where(ac => ac.AcompanhamentoId == acompanhamentoId);
+            query = query.AsNoTracking();                         
 
             return await query.ToArrayAsync();
         }
 
-        public Task<Usuario> GetByUsuarioIdAsync(int acompanhamentoId)
+        public Task<Usuario> GetByUsuarioIdAsync(long acompanhamentoId)
         {
             throw new NotImplementedException();
         }

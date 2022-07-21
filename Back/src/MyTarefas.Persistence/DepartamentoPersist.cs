@@ -13,7 +13,7 @@ namespace MyTarefas.Persistence
         {
             _context = context;
         }
-        public async Task<Departamento[]> GetAllByCardIdAsync(int cardId)
+        public async Task<Departamento[]> GetAllByCardIdAsync(long cardId)
         {
             IQueryable<Departamento> query = _context.Departamentos;
 
@@ -23,7 +23,7 @@ namespace MyTarefas.Persistence
             return await query.ToArrayAsync();
         }
 
-        public async Task<Departamento> GetByDepartamentoIdAsync(int departamentoId)
+        public async Task<Departamento> GetByDepartamentoIdAsync(long departamentoId)
         {
             IQueryable<Departamento> query = _context.Departamentos;
 

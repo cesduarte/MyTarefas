@@ -14,7 +14,7 @@ namespace MyTarefas.Persistence
             _context = context;
         }
 
-        public async Task<Acompanhamento> GetAcompanhamentoByIdAsync(int acompanhamentoId)
+        public async Task<Acompanhamento> GetAcompanhamentoByIdAsync(long acompanhamentoId)
         {
             IQueryable<Acompanhamento> query = _context.Acompanhamentos;
 
@@ -24,7 +24,7 @@ namespace MyTarefas.Persistence
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<Acompanhamento[]> GetAllByCardIdAsync(int cardId)
+        public async Task<Acompanhamento[]> GetAllByCardIdAsync(long cardId)
         {
             IQueryable<Acompanhamento> query = _context.Acompanhamentos;
 

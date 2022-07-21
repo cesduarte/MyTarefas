@@ -1,5 +1,10 @@
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
+using MyTarefas.Application;
+using MyTarefas.Application.Contratos;
+using MyTarefas.Persistence;
 using MyTarefas.Persistence.Contextos;
+using MyTarefas.Persistence.Contrato;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,13 +15,32 @@ builder.Services.AddDbContext<MyTarefasContext>(
     })
 );
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+  .AddJsonOptions(options =>
+                        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())
+                    )
+                    .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling =
+                        Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    );
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+builder.Services.AddScoped<IAcompanhamentoService, AcompanhamentoService>();
+builder.Services.AddScoped<ICardService, CardService>();
+builder.Services.AddScoped<IDepartamentoService, DepartamentoService>();
+builder.Services.AddScoped<ITarefaService, TarefaService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
+builder.Services.AddScoped<IAcompanhamentoPersist, AcompanhamentoPersist>();
+builder.Services.AddScoped<ICardPersist, CardPersist>();
+builder.Services.AddScoped<IDepartamentoPersist, DepartamentoPersist>();
+builder.Services.AddScoped<ITarefaPersist, TarefaPersist>();
+builder.Services.AddScoped<IUsuarioPersist, UsuarioPersist>();
+builder.Services.AddScoped<IGeralPersist, GeralPersist>();
+
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

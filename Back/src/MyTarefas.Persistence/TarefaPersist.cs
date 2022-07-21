@@ -24,7 +24,7 @@ namespace MyTarefas.Persistence
             return await query.ToArrayAsync();
         }
 
-        public async Task<Tarefa> GetByTarefaIdAsync(int tarefaId)
+        public async Task<Tarefa> GetByTarefaIdAsync(long tarefaId)
         {
              IQueryable<Tarefa> query = _context.Tarefas
             .Include(c => c.Cards);

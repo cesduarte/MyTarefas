@@ -13,7 +13,7 @@ namespace MyTarefas.Persistence
         {
             _context = context;
         }
-        public async Task<Card[]> GetAllByTarefaIdAsync(int tarefaId)
+        public async Task<Card[]> GetAllByTarefaIdAsync(long tarefaId)
         {
              IQueryable<Card> query = _context.Cards
                 .Include(d => d.Departamento)
@@ -35,7 +35,7 @@ namespace MyTarefas.Persistence
             return await query.ToArrayAsync();
         }
 
-        public async Task<Card> GetByCardIdAsync(int cardId)
+        public async Task<Card> GetByCardIdAsync(long cardId)
         {
             IQueryable<Card> query = _context.Cards
                 .Include(d => d.Departamento)

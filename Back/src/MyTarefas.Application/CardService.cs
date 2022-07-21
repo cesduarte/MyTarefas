@@ -37,7 +37,7 @@ namespace MyTarefas.Application
             }
         }
 
-        public async Task<Card> UpdateCard(int cardId, Card model)
+        public async Task<Card> UpdateCard(long cardId, Card model)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace MyTarefas.Application
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<bool> DeleteCard(int cardId)
+        public async Task<bool> DeleteCard(long cardId)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace MyTarefas.Application
             }
         }
 
-        public async Task<Card[]> GetAllByTarefaIdAsync(int tarefaId)
+        public async Task<Card[]> GetAllByTarefaIdAsync(long tarefaId)
         {
             var card = await _cardPersist.GetAllByTarefaIdAsync(tarefaId);
 

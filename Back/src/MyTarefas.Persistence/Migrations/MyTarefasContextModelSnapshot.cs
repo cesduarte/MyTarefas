@@ -22,16 +22,52 @@ namespace MyTarefas.Persistence.Migrations
 
             NpgsqlModelBuilderExtensions.UseSerialColumns(modelBuilder);
 
+            modelBuilder.Entity("AcompanhamentoAcompanhamentoUsuario", b =>
+                {
+                    b.Property<long>("AcompanhamentosId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("AcompanhamentosUsuariosAcompanhamentoId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("AcompanhamentosUsuariosUsuarioId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("AcompanhamentosId", "AcompanhamentosUsuariosAcompanhamentoId", "AcompanhamentosUsuariosUsuarioId");
+
+                    b.HasIndex("AcompanhamentosUsuariosAcompanhamentoId", "AcompanhamentosUsuariosUsuarioId");
+
+                    b.ToTable("AcompanhamentoAcompanhamentoUsuario");
+                });
+
+            modelBuilder.Entity("AcompanhamentoUsuarioUsuario", b =>
+                {
+                    b.Property<long>("UsuariosId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("AcompanhamentosUsuariosAcompanhamentoId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("AcompanhamentosUsuariosUsuarioId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("UsuariosId", "AcompanhamentosUsuariosAcompanhamentoId", "AcompanhamentosUsuariosUsuarioId");
+
+                    b.HasIndex("AcompanhamentosUsuariosAcompanhamentoId", "AcompanhamentosUsuariosUsuarioId");
+
+                    b.ToTable("AcompanhamentoUsuarioUsuario");
+                });
+
             modelBuilder.Entity("MyTarefas.Domain.Acompanhamento", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("Descricao")
-                        .HasColumnType("text");
+                    b.Property<long>("CardId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("HorasPrevistas")
                         .HasColumnType("text");
@@ -44,25 +80,52 @@ namespace MyTarefas.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CardId")
+                        .IsUnique();
+
                     b.ToTable("Acompanhamentos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1267064512L,
+                            CardId = 4669612L,
+                            HorasPrevistas = "00:30",
+                            Saldo = "00:10",
+                            Status = 1
+                        });
+                });
+
+            modelBuilder.Entity("MyTarefas.Domain.AcompanhamentoUsuario", b =>
+                {
+                    b.Property<long>("AcompanhamentoId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UsuarioId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("AcompanhamentoId", "UsuarioId");
+
+                    b.ToTable("AcompanhamentoUsuario");
+
+                    b.HasData(
+                        new
+                        {
+                            AcompanhamentoId = 1267064512L,
+                            UsuarioId = 2016575754L
+                        });
                 });
 
             modelBuilder.Entity("MyTarefas.Domain.Card", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("AcompanhamentoId")
-                        .HasColumnType("integer");
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime>("DataPrevisao")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<int?>("DepartamentoId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("Descricao")
                         .HasColumnType("text");
@@ -70,46 +133,59 @@ namespace MyTarefas.Persistence.Migrations
                     b.Property<string>("Projeto")
                         .HasColumnType("text");
 
-                    b.Property<int?>("TarefaId")
-                        .HasColumnType("integer");
+                    b.Property<long>("TarefaId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Titulo")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AcompanhamentoId");
-
-                    b.HasIndex("DepartamentoId");
-
                     b.HasIndex("TarefaId");
 
                     b.ToTable("Cards");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 4669612L,
+                            DataPrevisao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Descricao = "Usar a branch master, fazer pull, após isso...",
+                            Projeto = "Company",
+                            TarefaId = 1448567844L,
+                            Titulo = "Criar Migration"
+                        });
                 });
 
             modelBuilder.Entity("MyTarefas.Domain.Departamento", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CardId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Descricao")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CardId")
+                        .IsUnique();
+
                     b.ToTable("Departamentos");
                 });
 
             modelBuilder.Entity("MyTarefas.Domain.Tarefa", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Descricao")
                         .HasColumnType("text");
@@ -117,58 +193,122 @@ namespace MyTarefas.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tarefas");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 512228209L,
+                            Descricao = "Aguardando"
+                        },
+                        new
+                        {
+                            Id = 1448567844L,
+                            Descricao = "Em Andamento"
+                        },
+                        new
+                        {
+                            Id = 1646670742L,
+                            Descricao = "Pendência"
+                        },
+                        new
+                        {
+                            Id = 1549758251L,
+                            Descricao = "Finalizado"
+                        },
+                        new
+                        {
+                            Id = 1829130858L,
+                            Descricao = "Outros"
+                        });
                 });
 
             modelBuilder.Entity("MyTarefas.Domain.Usuario", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("AcompanhamentoId")
-                        .HasColumnType("integer");
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Descricao")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AcompanhamentoId");
-
                     b.ToTable("Usuarios");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2016575754L,
+                            Descricao = "Carlos"
+                        });
                 });
 
-            modelBuilder.Entity("MyTarefas.Domain.Card", b =>
-                {
-                    b.HasOne("MyTarefas.Domain.Acompanhamento", "Acompanhamento")
-                        .WithMany()
-                        .HasForeignKey("AcompanhamentoId");
-
-                    b.HasOne("MyTarefas.Domain.Departamento", "Departamento")
-                        .WithMany()
-                        .HasForeignKey("DepartamentoId");
-
-                    b.HasOne("MyTarefas.Domain.Tarefa", null)
-                        .WithMany("Cards")
-                        .HasForeignKey("TarefaId");
-
-                    b.Navigation("Acompanhamento");
-
-                    b.Navigation("Departamento");
-                });
-
-            modelBuilder.Entity("MyTarefas.Domain.Usuario", b =>
+            modelBuilder.Entity("AcompanhamentoAcompanhamentoUsuario", b =>
                 {
                     b.HasOne("MyTarefas.Domain.Acompanhamento", null)
-                        .WithMany("Usuarios")
-                        .HasForeignKey("AcompanhamentoId");
+                        .WithMany()
+                        .HasForeignKey("AcompanhamentosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyTarefas.Domain.AcompanhamentoUsuario", null)
+                        .WithMany()
+                        .HasForeignKey("AcompanhamentosUsuariosAcompanhamentoId", "AcompanhamentosUsuariosUsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AcompanhamentoUsuarioUsuario", b =>
+                {
+                    b.HasOne("MyTarefas.Domain.Usuario", null)
+                        .WithMany()
+                        .HasForeignKey("UsuariosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyTarefas.Domain.AcompanhamentoUsuario", null)
+                        .WithMany()
+                        .HasForeignKey("AcompanhamentosUsuariosAcompanhamentoId", "AcompanhamentosUsuariosUsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MyTarefas.Domain.Acompanhamento", b =>
                 {
-                    b.Navigation("Usuarios");
+                    b.HasOne("MyTarefas.Domain.Card", null)
+                        .WithOne("Acompanhamento")
+                        .HasForeignKey("MyTarefas.Domain.Acompanhamento", "CardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MyTarefas.Domain.Card", b =>
+                {
+                    b.HasOne("MyTarefas.Domain.Tarefa", "Tarefa")
+                        .WithMany("Cards")
+                        .HasForeignKey("TarefaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Tarefa");
+                });
+
+            modelBuilder.Entity("MyTarefas.Domain.Departamento", b =>
+                {
+                    b.HasOne("MyTarefas.Domain.Card", null)
+                        .WithOne("Departamento")
+                        .HasForeignKey("MyTarefas.Domain.Departamento", "CardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MyTarefas.Domain.Card", b =>
+                {
+                    b.Navigation("Acompanhamento");
+
+                    b.Navigation("Departamento");
                 });
 
             modelBuilder.Entity("MyTarefas.Domain.Tarefa", b =>

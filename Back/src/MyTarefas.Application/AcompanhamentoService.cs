@@ -16,7 +16,7 @@ namespace MyTarefas.Application
             _geralPersist = geralPersist;
         }
 
-        public async Task<Acompanhamento?> AddAcompanhamento(int cardId, Acompanhamento model)
+        public async Task<Acompanhamento?> AddAcompanhamento(long cardId, Acompanhamento model)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace MyTarefas.Application
             }
         }
 
-        public async Task<bool> DeleteAcompanhamento(int acompanhamentoId)
+        public async Task<bool> DeleteAcompanhamento(long acompanhamentoId)
         {
 
             try
@@ -57,7 +57,7 @@ namespace MyTarefas.Application
             }
         }
 
-        public async Task<Acompanhamento?> UpdateAcompanhamento(int acompanhamentoId, Acompanhamento model)
+        public async Task<Acompanhamento?> UpdateAcompanhamento(long acompanhamentoId, Acompanhamento model)
         {
             try
             {

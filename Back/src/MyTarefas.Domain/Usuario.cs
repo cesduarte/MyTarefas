@@ -2,9 +2,8 @@ namespace MyTarefas.Domain
 {
     public class Usuario
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string? Descricao { get; set; }
-
-        public int AcompanhamentoId { get; set; }
+        public IEnumerable<AcompanhamentoUsuario>? AcompanhamentosUsuarios { get; set; }
     }
 }

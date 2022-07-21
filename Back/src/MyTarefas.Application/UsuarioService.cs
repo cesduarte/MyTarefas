@@ -15,7 +15,7 @@ namespace MyTarefas.Application
             _usuarioPersist = usuarioPersist;
             _geralPersist = geralPersist;
         }
-        public async Task<Usuario> AddUsuario(int userId, Usuario model)
+        public async Task<Usuario> AddUsuario(long userId, Usuario model)
         {
              try
             {
@@ -35,7 +35,7 @@ namespace MyTarefas.Application
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<Usuario> UpdateUsuario(int userId, Usuario model)
+        public async Task<Usuario> UpdateUsuario(long userId, Usuario model)
         {
            try
             {
@@ -61,7 +61,7 @@ namespace MyTarefas.Application
             }
         }
 
-        public async Task<bool> DeleteUsuario(int userId)
+        public async Task<bool> DeleteUsuario(long userId)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace MyTarefas.Application
             }
         }
 
-        public async Task<Usuario[]> GetAllByAcompanhamentoIdAsync(int acompanhamentoId)
+        public async Task<Usuario[]> GetAllByAcompanhamentoIdAsync(long acompanhamentoId)
         {
              var usuario  = await _usuarioPersist.GetAllByAcompanhamentoIdAsync(acompanhamentoId);
 

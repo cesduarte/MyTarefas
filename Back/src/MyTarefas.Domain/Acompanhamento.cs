@@ -4,12 +4,11 @@ namespace MyTarefas.Domain
 {
     public class Acompanhamento
     {
-        public int Id { get; set; }
-        public string? Descricao { get; set; }
+        public long Id { get; set; }        
         public string? HorasPrevistas { get; set; }
         public string? Saldo { get; set; }
         public Status Status { get; set; }
-        public IEnumerable<Usuario>? Usuarios { get; set; }
-        public int CardId { get; set; }
+        public IEnumerable<AcompanhamentoUsuario>? AcompanhamentosUsuarios  { get; set; }
+        public long CardId { get; set; }
     }
 }
