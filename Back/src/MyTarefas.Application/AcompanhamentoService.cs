@@ -21,7 +21,7 @@ namespace MyTarefas.Application
              _mapper = mapper;
         }
 
-        public async Task<AcompanhamentoDto?> AddAcompanhamento(long cardId, AcompanhamentoDto model)
+        public async Task<AcompanhamentoDto> AddAcompanhamento(long cardId, AcompanhamentoDto model)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace MyTarefas.Application
             }
         }
 
-        public async Task<AcompanhamentoDto?> UpdateAcompanhamento(long acompanhamentoId, AcompanhamentoDto model)
+        public async Task<AcompanhamentoDto> UpdateAcompanhamento(long acompanhamentoId, AcompanhamentoDto model)
         {
             try
             {
