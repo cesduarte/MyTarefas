@@ -1,12 +1,14 @@
-using MyTarefas.Domain;
+
+
+using MyTarefas.Application.Dtos;
 
 namespace MyTarefas.Application.Contratos
 {
     public interface IDepartamentoService
     {
-        Task<Departamento> AddDepartamento(long departamentoId, Departamento model);        
-        Task<Departamento> UpdateDepartamento(long departamentoId, Departamento model);
+        Task<DepartamentoDto> AddDepartamento(long departamentoId, DepartamentoDto model);        
+        Task<DepartamentoDto> UpdateDepartamento(long departamentoId, DepartamentoDto model);
         Task<bool> DeleteDepartamento(long departamentoId);
-        Task<Departamento[]> GetAllByCardIdAsync(long cardId);        
+        Task<DepartamentoDto[]> GetAllByCardIdAsync(long cardId);        
     }
 }

@@ -1,4 +1,6 @@
+using AutoMapper;
 using MyTarefas.Application.Contratos;
+using MyTarefas.Application.Dtos;
 using MyTarefas.Domain;
 using MyTarefas.Persistence.Contrato;
 
@@ -10,24 +12,28 @@ namespace MyTarefas.Application
 
         private readonly ICardPersist _cardPersist;
 
-        public CardService(ICardPersist cardPersist, IGeralPersist geralPersist)
+        private readonly IMapper _mapper;
+
+        public CardService(ICardPersist cardPersist, IGeralPersist geralPersist, IMapper mapper)
         {
             _cardPersist = cardPersist;
             _geralPersist = geralPersist;
+            _mapper = mapper;
         }
 
-        public async Task<Card> AddCard(Card model)
+        public async Task<CardDto> AddCard(CardDto model)
         {
             try
             {
+                var card = _mapper.Map<Card>(model);
 
-                _geralPersist.Add<Card>(model);
+                _geralPersist.Add<Card>(card);
 
                 if (await _geralPersist.SaveChangesAsync())
                 {
                     var cardRetorno = await _cardPersist.GetByCardIdAsync(model.Id);
 
-                    return cardRetorno;
+                    return _mapper.Map<CardDto>(cardRetorno);
                 }
                 return null;
             }
@@ -37,7 +43,7 @@ namespace MyTarefas.Application
             }
         }
 
-        public async Task<Card> UpdateCard(long cardId, Card model)
+        public async Task<CardDto> UpdateCard(long cardId, CardDto model)
         {
             try
             {
@@ -47,13 +53,15 @@ namespace MyTarefas.Application
 
                 model.Id = card.Id;
 
+                _mapper.Map(model, card);
+
                 _geralPersist.Update<Card>(card);
 
                 if (await _geralPersist.SaveChangesAsync())
                 {
                     var cardRetorno = await _cardPersist.GetByCardIdAsync(model.Id);
 
-                    return cardRetorno;
+                   return _mapper.Map<CardDto>(cardRetorno);
                 }
                 return null;
             }
@@ -80,22 +88,22 @@ namespace MyTarefas.Application
             }
         }
 
-        public async Task<Card[]> GetAllByTarefaIdAsync(long tarefaId)
+        public async Task<CardDto[]> GetAllByTarefaIdAsync(long tarefaId)
         {
             var card = await _cardPersist.GetAllByTarefaIdAsync(tarefaId);
 
             if (card == null) return null;
 
-            return card;
+           return _mapper.Map<CardDto[]>(card);
         }
 
-        public async Task<Card[]> GetAllCardsAsync()
+        public async Task<CardDto[]> GetAllCardsAsync()
         {
             var card = await _cardPersist.GetAllCardsAsync();
 
             if (card == null) return null;
 
-            return card;
+            return _mapper.Map<CardDto[]>(card);
         }
     }
 }

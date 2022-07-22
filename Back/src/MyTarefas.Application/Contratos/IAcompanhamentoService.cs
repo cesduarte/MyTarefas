@@ -1,11 +1,10 @@
-using MyTarefas.Domain;
-
+using MyTarefas.Application.Dtos;
 namespace MyTarefas.Application.Contratos
 {
     public interface IAcompanhamentoService
     {
-        Task<Acompanhamento> AddAcompanhamento(long cardId, Acompanhamento model);        
-        Task<Acompanhamento> UpdateAcompanhamento(long acompanhamentoId, Acompanhamento model);
+        Task<AcompanhamentoDto> AddAcompanhamento(long cardId, AcompanhamentoDto model);        
+        Task<AcompanhamentoDto> UpdateAcompanhamento(long acompanhamentoId, AcompanhamentoDto model);
         Task<bool> DeleteAcompanhamento(long acompanhamentoId);
     }
 }

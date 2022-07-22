@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MyTarefas.Application.Contratos;
-using MyTarefas.Domain;
+using MyTarefas.Application.Dtos;
+
 
 namespace MyTarefas.API.Controllers;
 
@@ -34,7 +35,7 @@ public class TarefaController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(Tarefa model)
+    public async Task<IActionResult> Post(TarefaDto model)
     {
         try
         {

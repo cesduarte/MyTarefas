@@ -40,6 +40,8 @@ builder.Services.AddScoped<ITarefaPersist, TarefaPersist>();
 builder.Services.AddScoped<IUsuarioPersist, UsuarioPersist>();
 builder.Services.AddScoped<IGeralPersist, GeralPersist>();
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 var app = builder.Build();
 
 using (var serviceScope = app.Services.CreateScope())

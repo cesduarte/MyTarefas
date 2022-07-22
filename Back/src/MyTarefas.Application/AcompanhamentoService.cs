@@ -1,4 +1,6 @@
+using AutoMapper;
 using MyTarefas.Application.Contratos;
+using MyTarefas.Application.Dtos;
 using MyTarefas.Domain;
 using MyTarefas.Persistence.Contrato;
 
@@ -10,25 +12,29 @@ namespace MyTarefas.Application
 
         private readonly IAcompanhamentoPersist _acompanhamentoPersist;
 
-        public AcompanhamentoService(IAcompanhamentoPersist acompanhamentoPersist, IGeralPersist geralPersist)
+        private readonly IMapper _mapper;
+
+        public AcompanhamentoService(IAcompanhamentoPersist acompanhamentoPersist, IGeralPersist geralPersist, IMapper mapper)
         {
             _acompanhamentoPersist = acompanhamentoPersist;
             _geralPersist = geralPersist;
+             _mapper = mapper;
         }
 
-        public async Task<Acompanhamento?> AddAcompanhamento(long cardId, Acompanhamento model)
+        public async Task<AcompanhamentoDto?> AddAcompanhamento(long cardId, AcompanhamentoDto model)
         {
             try
             {
-                model.CardId = cardId;
+                var acompanhamento = _mapper.Map<Acompanhamento>(model);
+                acompanhamento.CardId = cardId;              
 
-                _geralPersist.Add<Acompanhamento>(model);
+                _geralPersist.Add<Acompanhamento>(acompanhamento);
 
                 if (await _geralPersist.SaveChangesAsync())
                 {
                     var acompanhamentoRetorno = await _acompanhamentoPersist.GetAcompanhamentoByIdAsync(model.Id);
 
-                    return acompanhamentoRetorno;
+                    return _mapper.Map<AcompanhamentoDto>(acompanhamento);                    
                 }
                 return null;
             }
@@ -57,7 +63,7 @@ namespace MyTarefas.Application
             }
         }
 
-        public async Task<Acompanhamento?> UpdateAcompanhamento(long acompanhamentoId, Acompanhamento model)
+        public async Task<AcompanhamentoDto?> UpdateAcompanhamento(long acompanhamentoId, AcompanhamentoDto model)
         {
             try
             {
@@ -65,7 +71,9 @@ namespace MyTarefas.Application
 
                 if (acompanhamento == null) return null;
 
-                model.Id = acompanhamento.Id;                
+                model.Id = acompanhamento.Id;
+
+                _mapper.Map(model, acompanhamento);                
 
                 _geralPersist.Update<Acompanhamento>(acompanhamento);
 
@@ -73,7 +81,7 @@ namespace MyTarefas.Application
                 {
                     var acompanhamentoRetorno = await _acompanhamentoPersist.GetAcompanhamentoByIdAsync(model.Id);
 
-                    return acompanhamentoRetorno;
+                    return _mapper.Map<AcompanhamentoDto>(acompanhamento);
                 }
                 return null;
             }
@@ -81,6 +89,6 @@ namespace MyTarefas.Application
             {
                 throw new Exception(ex.Message);
             }
-        }
+        }        
     }
 }

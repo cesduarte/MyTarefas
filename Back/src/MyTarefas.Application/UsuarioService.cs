@@ -1,4 +1,6 @@
+using AutoMapper;
 using MyTarefas.Application.Contratos;
+using MyTarefas.Application.Dtos;
 using MyTarefas.Domain;
 using MyTarefas.Persistence.Contrato;
 
@@ -10,82 +12,33 @@ namespace MyTarefas.Application
 
         private readonly IUsuarioPersist _usuarioPersist;
 
-        public UsuarioService(IUsuarioPersist usuarioPersist, IGeralPersist geralPersist)
+         private readonly IMapper _mapper;
+
+        public UsuarioService(IUsuarioPersist usuarioPersist, IGeralPersist geralPersist, IMapper mapper)
         {
             _usuarioPersist = usuarioPersist;
             _geralPersist = geralPersist;
-        }
-        public async Task<Usuario> AddUsuario(long userId, Usuario model)
-        {
-             try
-            {
-
-                _geralPersist.Add<Usuario>(model);
-
-                if (await _geralPersist.SaveChangesAsync())
-                {
-                    var usuarioRetorno = await _usuarioPersist.GetByUsuarioIdAsync(model.Id);
-
-                    return usuarioRetorno;
-                }
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-        public async Task<Usuario> UpdateUsuario(long userId, Usuario model)
-        {
-           try
-            {
-                var usuario = await _usuarioPersist.GetByUsuarioIdAsync(userId);
-
-                if (usuario == null) return null;
-
-                model.Id = usuario.Id;
-
-                _geralPersist.Update<Usuario>(usuario);
-
-                if (await _geralPersist.SaveChangesAsync())
-                {
-                    var usuarioRetorno = await _usuarioPersist.GetByUsuarioIdAsync(model.Id);
-
-                    return usuarioRetorno;
-                }
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+             _mapper = mapper;
         }
 
-        public async Task<bool> DeleteUsuario(long userId)
+        public Task<UsuarioDto> AddUsuario(long userId, UsuarioDto model)
         {
-            try
-            {
-                var usuario = await _usuarioPersist.GetByUsuarioIdAsync(userId);
-
-                if (usuario == null) throw new Exception("usuario não encontrado.");
-
-                _geralPersist.Delete<Usuario>(usuario);
-
-                return await _geralPersist.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            throw new NotImplementedException();
         }
 
-        public async Task<Usuario[]> GetAllByAcompanhamentoIdAsync(long acompanhamentoId)
+        public Task<bool> DeleteUsuario(long userId)
         {
-             var usuario  = await _usuarioPersist.GetAllByAcompanhamentoIdAsync(acompanhamentoId);
+            throw new NotImplementedException();
+        }
 
-            if ( usuario == null) return null;
+        public Task<UsuarioDto[]> GetAllByAcompanhamentoIdAsync(long acompanhamentoId)
+        {
+            throw new NotImplementedException();
+        }
 
-            return usuario;
-        }        
+        public Task<UsuarioDto> UpdateUsuario(long userId, UsuarioDto model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,15 +1,17 @@
-using MyTarefas.Domain;
+
+
+using MyTarefas.Application.Dtos;
 
 namespace MyTarefas.Application.Contratos
 {
     public interface ICardService
     {
-        Task<Card> AddCard(Card model);        
-        Task<Card> UpdateCard(long cardId, Card model);
+        Task<CardDto> AddCard(CardDto model);        
+        Task<CardDto> UpdateCard(long cardId, CardDto model);
         Task<bool> DeleteCard(long cardId);
 
-        Task<Card[]> GetAllCardsAsync(); 
+        Task<CardDto[]> GetAllCardsAsync(); 
 
-        Task<Card[]> GetAllByTarefaIdAsync(long tarefaId); 
+        Task<CardDto[]> GetAllByTarefaIdAsync(long tarefaId); 
     }
 }

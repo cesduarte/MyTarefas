@@ -1,4 +1,6 @@
+using AutoMapper;
 using MyTarefas.Application.Contratos;
+using MyTarefas.Application.Dtos;
 using MyTarefas.Domain;
 using MyTarefas.Persistence.Contrato;
 
@@ -10,83 +12,33 @@ namespace MyTarefas.Application
 
         private readonly IDepartamentoPersist _departamentoPersist;
 
-        public DepartamentoService(IDepartamentoPersist departamentoPersist, IGeralPersist geralPersist)
+         private readonly IMapper _mapper;
+
+        public DepartamentoService(IDepartamentoPersist departamentoPersist, IGeralPersist geralPersist, IMapper mapper)
         {
             _departamentoPersist = departamentoPersist;
             _geralPersist = geralPersist;
+             _mapper = mapper;
         }
 
-        public async Task<Departamento> AddDepartamento(long departamentoId, Departamento model)
+        public Task<DepartamentoDto> AddDepartamento(long departamentoId, DepartamentoDto model)
         {
-            try
-            {
-
-                _geralPersist.Add<Departamento>(model);
-
-                if (await _geralPersist.SaveChangesAsync())
-                {
-                    var departamentoRetorno = await _departamentoPersist.GetByDepartamentoIdAsync(model.Id);
-
-                    return departamentoRetorno;
-                }
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            throw new NotImplementedException();
         }
-        public async Task<Departamento> UpdateDepartamento(long departamentoId, Departamento model)
+
+        public Task<bool> DeleteDepartamento(long departamentoId)
         {
-            try
-            {
-                var departamento = await _departamentoPersist.GetByDepartamentoIdAsync(departamentoId);
-
-                if (departamento == null) return null;
-
-                model.Id = departamento.Id;
-
-                _geralPersist.Update<Departamento>(departamento);
-
-                if (await _geralPersist.SaveChangesAsync())
-                {
-                    var departamentoRetorno = await _departamentoPersist.GetByDepartamentoIdAsync(model.Id);
-
-                    return departamentoRetorno;
-                }
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            throw new NotImplementedException();
         }
-        public async Task<bool> DeleteDepartamento(long departamentoId)
+
+        public Task<DepartamentoDto[]> GetAllByCardIdAsync(long cardId)
         {
-            try
-            {
-                var departamento = await _departamentoPersist.GetByDepartamentoIdAsync(departamentoId);
-
-                if (departamento == null) throw new Exception("Departamento não encontrado.");
-
-                _geralPersist.Delete<Departamento>(departamento);
-
-                return await _geralPersist.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            throw new NotImplementedException();
         }
 
-        public async Task<Departamento[]> GetAllByCardIdAsync(long cardId)
+        public Task<DepartamentoDto> UpdateDepartamento(long departamentoId, DepartamentoDto model)
         {
-           var departamento  = await _departamentoPersist.GetAllByCardIdAsync(cardId);
-
-            if ( departamento == null) return null;
-
-            return departamento;
+            throw new NotImplementedException();
         }
-
     }
 }

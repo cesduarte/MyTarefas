@@ -1,4 +1,6 @@
+using AutoMapper;
 using MyTarefas.Application.Contratos;
+using MyTarefas.Application.Dtos;
 using MyTarefas.Domain;
 using MyTarefas.Persistence.Contrato;
 
@@ -10,24 +12,28 @@ namespace MyTarefas.Application
 
         private readonly ITarefaPersist _tarefaPersist;
 
-        public TarefaService(ITarefaPersist tarefaPersist, IGeralPersist geralPersist)
+         private readonly IMapper _mapper;
+
+        public TarefaService(ITarefaPersist tarefaPersist, IGeralPersist geralPersist, IMapper mapper)
         {
             _tarefaPersist = tarefaPersist;
             _geralPersist = geralPersist;
+             _mapper = mapper;
         }
 
-        public async Task<Tarefa> AddTarefa(Tarefa model)
+        public async Task<TarefaDto> AddTarefa(TarefaDto model)
         {
             try
             {
+                var tarefa = _mapper.Map<Tarefa>(model);
 
-                _geralPersist.Add<Tarefa>(model);
+                _geralPersist.Add<Tarefa>(tarefa);
 
                 if (await _geralPersist.SaveChangesAsync())
                 {
-                    var TarefaRetorno = await _tarefaPersist.GetByTarefaIdAsync(model.Id);
+                    var tarefaRetorno = await _tarefaPersist.GetByTarefaIdAsync(model.Id);
 
-                    return TarefaRetorno;
+                    return _mapper.Map<TarefaDto>(tarefaRetorno);
                 }
                 return null;
             }
@@ -36,7 +42,7 @@ namespace MyTarefas.Application
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<Tarefa> UpdateTarefa(long tarefaId, Tarefa model)
+        public async Task<TarefaDto> UpdateTarefa(long tarefaId, TarefaDto model)
         {
             try
             {
@@ -46,13 +52,15 @@ namespace MyTarefas.Application
 
                 model.Id = tarefa.Id;
 
+                 _mapper.Map(model, tarefa );
+
                 _geralPersist.Update<Tarefa>(tarefa);
 
                 if (await _geralPersist.SaveChangesAsync())
                 {
                     var tarefaRetorno = await _tarefaPersist.GetByTarefaIdAsync(model.Id);
 
-                    return tarefaRetorno;
+                    return _mapper.Map<TarefaDto>(tarefaRetorno);
                 }
                 return null;
             }
@@ -79,13 +87,13 @@ namespace MyTarefas.Application
             }
         }
 
-        public async Task<Tarefa[]> GetAllTarefasAsync()
+        public async Task<TarefaDto[]> GetAllTarefasAsync()
         {
-            var tarefa = await _tarefaPersist.GetAllTarefasAsync();
+            var tarefas = await _tarefaPersist.GetAllTarefasAsync();            
 
-            if (tarefa == null) return null;
+            if (tarefas == null) return null;                
 
-            return tarefa;
+            return _mapper.Map<TarefaDto[]>(tarefas);
         }
 
     }

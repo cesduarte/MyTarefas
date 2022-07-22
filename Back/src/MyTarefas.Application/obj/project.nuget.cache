@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "BDc2vyXJw+B9sdge9tThH9+2GIzOQRitiPlU3m90Ivjh52Qo1huAepaHdZFeoamaR6Hq57OUB3iJ6uasiB4C7A==",
+  "dgSpecHash": "U9eEEHDEZO9Cv+bTzkyivQTnfgQoLQ+akbkMm1BfIfImm87yVPJ5SeQ/1QnJfXW/qXUcuiaCDKsKzGudfTSIeg==",
   "success": true,
   "projectFilePath": "C:\\Desenvolvimento\\MyTarefas\\Back\\src\\MyTarefas.Application\\MyTarefas.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\carlo\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.7\\microsoft.entityframeworkcore.6.0.7.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.7\\microsoft.entityframeworkcore.abstractions.6.0.7.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.7\\microsoft.entityframeworkcore.analyzers.6.0.7.nupkg.sha512",

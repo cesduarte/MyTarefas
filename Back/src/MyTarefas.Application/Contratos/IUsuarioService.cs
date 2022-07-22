@@ -1,13 +1,13 @@
-using MyTarefas.Domain;
+using MyTarefas.Application.Dtos;
 
 namespace MyTarefas.Application.Contratos
 {
     public interface IUsuarioService
     {
-        Task<Usuario> AddUsuario(long userId, Usuario model);        
-        Task<Usuario> UpdateUsuario(long userId, Usuario model);
+        Task<UsuarioDto> AddUsuario(long userId, UsuarioDto model);        
+        Task<UsuarioDto> UpdateUsuario(long userId, UsuarioDto model);
         Task<bool> DeleteUsuario(long userId);
-        Task<Usuario[]> GetAllByAcompanhamentoIdAsync(long acompanhamentoId);
+        Task<UsuarioDto[]> GetAllByAcompanhamentoIdAsync(long acompanhamentoId);
 
     }
 }

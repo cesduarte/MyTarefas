@@ -1,12 +1,12 @@
-using MyTarefas.Domain;
+using MyTarefas.Application.Dtos;
 
 namespace MyTarefas.Application.Contratos
 {
     public interface ITarefaService
     {
-        Task<Tarefa> AddTarefa(Tarefa model);        
-        Task<Tarefa> UpdateTarefa(long tarefaId, Tarefa model);
+        Task<TarefaDto> AddTarefa(TarefaDto model);        
+        Task<TarefaDto> UpdateTarefa(long tarefaId, TarefaDto model);
         Task<bool> DeleteTarefa(long tarefaId);
-        Task<Tarefa[]> GetAllTarefasAsync();
+        Task<TarefaDto[]> GetAllTarefasAsync();
     }
 }
