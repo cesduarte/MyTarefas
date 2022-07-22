@@ -27,6 +27,8 @@ namespace MyTarefas.Persistence.Contextos
                 .HasMany(e => e.Cards)
                 .WithOne(rs => rs.Tarefa)
                 .HasForeignKey(ee => ee.TarefaId);
+              modelBuilder.Entity<Card>()
+               .HasOne(u => u.Acompanhamento);
 
             new Seed(modelBuilder).Run();
         }

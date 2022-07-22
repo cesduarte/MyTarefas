@@ -41,6 +41,15 @@ builder.Services.AddScoped<IUsuarioPersist, UsuarioPersist>();
 builder.Services.AddScoped<IGeralPersist, GeralPersist>();
 
 var app = builder.Build();
+
+using (var serviceScope = app.Services.CreateScope())
+{
+   var services = serviceScope.ServiceProvider;
+    
+   var dbcontext = services.GetRequiredService<MyTarefasContext>();   
+
+   dbcontext.Database.Migrate();
+}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

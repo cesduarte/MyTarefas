@@ -11,18 +11,6 @@ namespace MyTarefas.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AcompanhamentoUsuario",
-                columns: table => new
-                {
-                    UsuarioId = table.Column<long>(type: "bigint", nullable: false),
-                    AcompanhamentoId = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AcompanhamentoUsuario", x => new { x.AcompanhamentoId, x.UsuarioId });
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Tarefas",
                 columns: table => new
                 {
@@ -72,31 +60,6 @@ namespace MyTarefas.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AcompanhamentoUsuarioUsuario",
-                columns: table => new
-                {
-                    UsuariosId = table.Column<long>(type: "bigint", nullable: false),
-                    AcompanhamentosUsuariosAcompanhamentoId = table.Column<long>(type: "bigint", nullable: false),
-                    AcompanhamentosUsuariosUsuarioId = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AcompanhamentoUsuarioUsuario", x => new { x.UsuariosId, x.AcompanhamentosUsuariosAcompanhamentoId, x.AcompanhamentosUsuariosUsuarioId });
-                    table.ForeignKey(
-                        name: "FK_AcompanhamentoUsuarioUsuario_AcompanhamentoUsuario_Acompanh~",
-                        columns: x => new { x.AcompanhamentosUsuariosAcompanhamentoId, x.AcompanhamentosUsuariosUsuarioId },
-                        principalTable: "AcompanhamentoUsuario",
-                        principalColumns: new[] { "AcompanhamentoId", "UsuarioId" },
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AcompanhamentoUsuarioUsuario_Usuarios_UsuariosId",
-                        column: x => x.UsuariosId,
-                        principalTable: "Usuarios",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Acompanhamentos",
                 columns: table => new
                 {
@@ -139,66 +102,68 @@ namespace MyTarefas.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AcompanhamentoAcompanhamentoUsuario",
+                name: "AcompanhamentoUsuario",
                 columns: table => new
                 {
-                    AcompanhamentosId = table.Column<long>(type: "bigint", nullable: false),
-                    AcompanhamentosUsuariosAcompanhamentoId = table.Column<long>(type: "bigint", nullable: false),
-                    AcompanhamentosUsuariosUsuarioId = table.Column<long>(type: "bigint", nullable: false)
+                    UsuarioId = table.Column<long>(type: "bigint", nullable: false),
+                    AcompanhamentoId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AcompanhamentoAcompanhamentoUsuario", x => new { x.AcompanhamentosId, x.AcompanhamentosUsuariosAcompanhamentoId, x.AcompanhamentosUsuariosUsuarioId });
+                    table.PrimaryKey("PK_AcompanhamentoUsuario", x => new { x.AcompanhamentoId, x.UsuarioId });
                     table.ForeignKey(
-                        name: "FK_AcompanhamentoAcompanhamentoUsuario_Acompanhamentos_Acompan~",
-                        column: x => x.AcompanhamentosId,
+                        name: "FK_AcompanhamentoUsuario_Acompanhamentos_AcompanhamentoId",
+                        column: x => x.AcompanhamentoId,
                         principalTable: "Acompanhamentos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AcompanhamentoAcompanhamentoUsuario_AcompanhamentoUsuario_A~",
-                        columns: x => new { x.AcompanhamentosUsuariosAcompanhamentoId, x.AcompanhamentosUsuariosUsuarioId },
-                        principalTable: "AcompanhamentoUsuario",
-                        principalColumns: new[] { "AcompanhamentoId", "UsuarioId" },
+                        name: "FK_AcompanhamentoUsuario_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.InsertData(
-                table: "AcompanhamentoUsuario",
-                columns: new[] { "AcompanhamentoId", "UsuarioId" },
-                values: new object[] { 1267064512L, 2016575754L });
 
             migrationBuilder.InsertData(
                 table: "Tarefas",
                 columns: new[] { "Id", "Descricao" },
                 values: new object[,]
                 {
-                    { 512228209L, "Aguardando" },
-                    { 1448567844L, "Em Andamento" },
-                    { 1549758251L, "Finalizado" },
-                    { 1646670742L, "Pendência" },
-                    { 1829130858L, "Outros" }
+                    { 19518833L, "Aguardando" },
+                    { 808961563L, "Pendência" },
+                    { 1109521758L, "Em Andamento" },
+                    { 1193556483L, "Outros" },
+                    { 1659783382L, "Finalizado" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Descricao" },
-                values: new object[] { 2016575754L, "Carlos" });
+                values: new object[] { 1744427582L, "Carlos" });
 
             migrationBuilder.InsertData(
                 table: "Cards",
                 columns: new[] { "Id", "DataPrevisao", "Descricao", "Projeto", "TarefaId", "Titulo" },
-                values: new object[] { 4669612L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Usar a branch master, fazer pull, após isso...", "Company", 1448567844L, "Criar Migration" });
+                values: new object[,]
+                {
+                    { 613582855L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Usar a branch master, fazer pull, após isso...", "Company", 19518833L, "Criar Migration" },
+                    { 1734352471L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Colunas utilizadas: Código, nome, Descrição...", "Company", 1193556483L, "Listagem de clientes" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Acompanhamentos",
                 columns: new[] { "Id", "CardId", "HorasPrevistas", "Saldo", "Status" },
-                values: new object[] { 1267064512L, 4669612L, "00:30", "00:10", 1 });
+                values: new object[,]
+                {
+                    { 1142593671L, 613582855L, "00:30", "00:10", 1 },
+                    { 1236741003L, 1734352471L, "00:30", "00:10", 1 }
+                });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_AcompanhamentoAcompanhamentoUsuario_AcompanhamentosUsuarios~",
-                table: "AcompanhamentoAcompanhamentoUsuario",
-                columns: new[] { "AcompanhamentosUsuariosAcompanhamentoId", "AcompanhamentosUsuariosUsuarioId" });
+            migrationBuilder.InsertData(
+                table: "AcompanhamentoUsuario",
+                columns: new[] { "AcompanhamentoId", "UsuarioId" },
+                values: new object[] { 1142593671L, 1744427582L });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Acompanhamentos_CardId",
@@ -207,9 +172,9 @@ namespace MyTarefas.Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_AcompanhamentoUsuarioUsuario_AcompanhamentosUsuariosAcompan~",
-                table: "AcompanhamentoUsuarioUsuario",
-                columns: new[] { "AcompanhamentosUsuariosAcompanhamentoId", "AcompanhamentosUsuariosUsuarioId" });
+                name: "IX_AcompanhamentoUsuario_UsuarioId",
+                table: "AcompanhamentoUsuario",
+                column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cards_TarefaId",
@@ -226,19 +191,13 @@ namespace MyTarefas.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AcompanhamentoAcompanhamentoUsuario");
-
-            migrationBuilder.DropTable(
-                name: "AcompanhamentoUsuarioUsuario");
+                name: "AcompanhamentoUsuario");
 
             migrationBuilder.DropTable(
                 name: "Departamentos");
 
             migrationBuilder.DropTable(
                 name: "Acompanhamentos");
-
-            migrationBuilder.DropTable(
-                name: "AcompanhamentoUsuario");
 
             migrationBuilder.DropTable(
                 name: "Usuarios");

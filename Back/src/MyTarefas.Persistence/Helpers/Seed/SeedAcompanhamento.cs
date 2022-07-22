@@ -7,7 +7,7 @@ namespace MyTarefas.Persistence.Helpers.Seed
         public SeedAcompanhamento()
         {
         }
-        public List<Acompanhamento> CreateList(List<Card> cads)
+        public List<Acompanhamento> CreateList(List<Card> cards)
         {
             Random randNum = new Random();
 
@@ -19,7 +19,15 @@ namespace MyTarefas.Persistence.Helpers.Seed
                     Status = Domain.Enum.Status.ATENCAO,
                     HorasPrevistas = "00:30",
                     Saldo = "00:10",
-                    CardId = cads[0].Id
+                    CardId = cards.First().Id
+                },
+                new Acompanhamento
+                {                   
+                    Id = randNum.Next(),
+                    Status = Domain.Enum.Status.ATENCAO,
+                    HorasPrevistas = "00:30",
+                    Saldo = "00:10",
+                    CardId = cards.Last().Id
                 },
 
             };

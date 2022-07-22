@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyTarefas.Persistence.Migrations
 {
     [DbContext(typeof(MyTarefasContext))]
-    [Migration("20220721032240_initial")]
+    [Migration("20220722034318_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,42 +23,6 @@ namespace MyTarefas.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseSerialColumns(modelBuilder);
-
-            modelBuilder.Entity("AcompanhamentoAcompanhamentoUsuario", b =>
-                {
-                    b.Property<long>("AcompanhamentosId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("AcompanhamentosUsuariosAcompanhamentoId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("AcompanhamentosUsuariosUsuarioId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("AcompanhamentosId", "AcompanhamentosUsuariosAcompanhamentoId", "AcompanhamentosUsuariosUsuarioId");
-
-                    b.HasIndex("AcompanhamentosUsuariosAcompanhamentoId", "AcompanhamentosUsuariosUsuarioId");
-
-                    b.ToTable("AcompanhamentoAcompanhamentoUsuario");
-                });
-
-            modelBuilder.Entity("AcompanhamentoUsuarioUsuario", b =>
-                {
-                    b.Property<long>("UsuariosId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("AcompanhamentosUsuariosAcompanhamentoId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("AcompanhamentosUsuariosUsuarioId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("UsuariosId", "AcompanhamentosUsuariosAcompanhamentoId", "AcompanhamentosUsuariosUsuarioId");
-
-                    b.HasIndex("AcompanhamentosUsuariosAcompanhamentoId", "AcompanhamentosUsuariosUsuarioId");
-
-                    b.ToTable("AcompanhamentoUsuarioUsuario");
-                });
 
             modelBuilder.Entity("MyTarefas.Domain.Acompanhamento", b =>
                 {
@@ -90,8 +54,16 @@ namespace MyTarefas.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1267064512L,
-                            CardId = 4669612L,
+                            Id = 1142593671L,
+                            CardId = 613582855L,
+                            HorasPrevistas = "00:30",
+                            Saldo = "00:10",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 1236741003L,
+                            CardId = 1734352471L,
                             HorasPrevistas = "00:30",
                             Saldo = "00:10",
                             Status = 1
@@ -108,13 +80,15 @@ namespace MyTarefas.Persistence.Migrations
 
                     b.HasKey("AcompanhamentoId", "UsuarioId");
 
+                    b.HasIndex("UsuarioId");
+
                     b.ToTable("AcompanhamentoUsuario");
 
                     b.HasData(
                         new
                         {
-                            AcompanhamentoId = 1267064512L,
-                            UsuarioId = 2016575754L
+                            AcompanhamentoId = 1142593671L,
+                            UsuarioId = 1744427582L
                         });
                 });
 
@@ -150,12 +124,21 @@ namespace MyTarefas.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 4669612L,
+                            Id = 613582855L,
                             DataPrevisao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "Usar a branch master, fazer pull, após isso...",
                             Projeto = "Company",
-                            TarefaId = 1448567844L,
+                            TarefaId = 19518833L,
                             Titulo = "Criar Migration"
+                        },
+                        new
+                        {
+                            Id = 1734352471L,
+                            DataPrevisao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Descricao = "Colunas utilizadas: Código, nome, Descrição...",
+                            Projeto = "Company",
+                            TarefaId = 1193556483L,
+                            Titulo = "Listagem de clientes"
                         });
                 });
 
@@ -199,27 +182,27 @@ namespace MyTarefas.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 512228209L,
+                            Id = 19518833L,
                             Descricao = "Aguardando"
                         },
                         new
                         {
-                            Id = 1448567844L,
+                            Id = 1109521758L,
                             Descricao = "Em Andamento"
                         },
                         new
                         {
-                            Id = 1646670742L,
+                            Id = 808961563L,
                             Descricao = "Pendência"
                         },
                         new
                         {
-                            Id = 1549758251L,
+                            Id = 1659783382L,
                             Descricao = "Finalizado"
                         },
                         new
                         {
-                            Id = 1829130858L,
+                            Id = 1193556483L,
                             Descricao = "Outros"
                         });
                 });
@@ -242,39 +225,9 @@ namespace MyTarefas.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 2016575754L,
+                            Id = 1744427582L,
                             Descricao = "Carlos"
                         });
-                });
-
-            modelBuilder.Entity("AcompanhamentoAcompanhamentoUsuario", b =>
-                {
-                    b.HasOne("MyTarefas.Domain.Acompanhamento", null)
-                        .WithMany()
-                        .HasForeignKey("AcompanhamentosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MyTarefas.Domain.AcompanhamentoUsuario", null)
-                        .WithMany()
-                        .HasForeignKey("AcompanhamentosUsuariosAcompanhamentoId", "AcompanhamentosUsuariosUsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("AcompanhamentoUsuarioUsuario", b =>
-                {
-                    b.HasOne("MyTarefas.Domain.Usuario", null)
-                        .WithMany()
-                        .HasForeignKey("UsuariosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MyTarefas.Domain.AcompanhamentoUsuario", null)
-                        .WithMany()
-                        .HasForeignKey("AcompanhamentosUsuariosAcompanhamentoId", "AcompanhamentosUsuariosUsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("MyTarefas.Domain.Acompanhamento", b =>
@@ -284,6 +237,23 @@ namespace MyTarefas.Persistence.Migrations
                         .HasForeignKey("MyTarefas.Domain.Acompanhamento", "CardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MyTarefas.Domain.AcompanhamentoUsuario", b =>
+                {
+                    b.HasOne("MyTarefas.Domain.Acompanhamento", null)
+                        .WithMany("AcompanhamentosUsuarios")
+                        .HasForeignKey("AcompanhamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyTarefas.Domain.Usuario", "Usuario")
+                        .WithMany("AcompanhamentosUsuarios")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("MyTarefas.Domain.Card", b =>
@@ -306,6 +276,11 @@ namespace MyTarefas.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MyTarefas.Domain.Acompanhamento", b =>
+                {
+                    b.Navigation("AcompanhamentosUsuarios");
+                });
+
             modelBuilder.Entity("MyTarefas.Domain.Card", b =>
                 {
                     b.Navigation("Acompanhamento");
@@ -316,6 +291,11 @@ namespace MyTarefas.Persistence.Migrations
             modelBuilder.Entity("MyTarefas.Domain.Tarefa", b =>
                 {
                     b.Navigation("Cards");
+                });
+
+            modelBuilder.Entity("MyTarefas.Domain.Usuario", b =>
+                {
+                    b.Navigation("AcompanhamentosUsuarios");
                 });
 #pragma warning restore 612, 618
         }

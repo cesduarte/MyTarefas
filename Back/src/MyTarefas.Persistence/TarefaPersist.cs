@@ -17,7 +17,7 @@ namespace MyTarefas.Persistence
         public async Task<Tarefa[]> GetAllTarefasAsync()
         {
             IQueryable<Tarefa> query = _context.Tarefas
-            .Include(c => c.Cards);
+            .Include(c => c.Cards).ThenInclude(s => s.Acompanhamento);           
 
             query = query.AsNoTracking();                         
 
