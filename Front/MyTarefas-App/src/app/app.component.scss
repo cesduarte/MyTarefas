@@ -1,0 +1,42 @@
+.geral{
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+
+.menu-esquerdo1{
+  top: -5.364418598219345e-8px;
+  left: 0px;
+  width: 64px;
+  height: 1080px;
+  background: var(--unnamed-color-8cc587) 0% 0% no-repeat padding-box;
+  background: #8CC587 0% 0% no-repeat padding-box;
+  box-shadow: 20px 35px 50px #0000001A;
+  opacity: 1;
+}
+.menu-esquerdo2{
+  top: 0px;
+  left: 64px;
+  width: 64px;
+  height: 1080px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  opacity: 1;
+}
+.conteudo{
+  top: 0px;
+  left: 64px;
+  width: 1659px;
+  height: 1080px;
+  opacity: 1;
+}
+.menu-direito{
+  top: 0px;
+  left: 64px;
+  width: 64px;
+  height: 1080px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  opacity: 1;
+}

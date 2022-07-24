@@ -1,0 +1,32 @@
+
+
+.wrapper.theme_default{
+
+    .sidebar{
+        top: -5.364418598219345e-8px;
+        left: 0px;
+        width: 64px;
+        height: 1080px;/* UI Properties */
+        background: var(--unnamed-color-8cc587) 0% 0% no-repeat padding-box;
+        background: #8CC587 0% 0% no-repeat padding-box;
+        box-shadow: 20px 35px 50px #0000001A;
+        opacity: 1;
+        color: black
+    }
+    .sidebar .logo_content img{
+      top: 5px;
+      left: 1px;
+      width: 59px;
+      height: 59px;
+      opacity: 1;
+      background: transparent 0% 0% no-repeat padding-box;
+    }
+    .sidebar .menu_container .menu i{
+      color: var(--unnamed-color-3a5138);
+   }
+
+     .sidebar .menu_container .menu i:hover{
+        color: var(--sidebar--menu--hover--color) ;
+     }
+
+}
