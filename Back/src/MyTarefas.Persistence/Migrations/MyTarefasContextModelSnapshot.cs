@@ -52,16 +52,16 @@ namespace MyTarefas.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1255664939L,
-                            CardId = 1240496019L,
+                            Id = 727934818L,
+                            CardId = 90217703L,
                             HorasPrevistas = "00:30",
                             Saldo = "00:10",
                             Status = 1
                         },
                         new
                         {
-                            Id = 480529510L,
-                            CardId = 1763875519L,
+                            Id = 555540072L,
+                            CardId = 417972493L,
                             HorasPrevistas = "00:30",
                             Saldo = "00:10",
                             Status = 1
@@ -85,8 +85,8 @@ namespace MyTarefas.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            AcompanhamentoId = 1255664939L,
-                            UsuarioId = 1519169388L
+                            AcompanhamentoId = 727934818L,
+                            UsuarioId = 1435033545L
                         });
                 });
 
@@ -113,6 +113,9 @@ namespace MyTarefas.Persistence.Migrations
                     b.Property<string>("Titulo")
                         .HasColumnType("text");
 
+                    b.Property<int>("posicaoVertical")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("TarefaId");
@@ -122,21 +125,53 @@ namespace MyTarefas.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1240496019L,
+                            Id = 90217703L,
                             DataPrevisao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "Usar a branch master, fazer pull, após isso...",
                             Projeto = "Company",
-                            TarefaId = 1115573610L,
-                            Titulo = "Criar Migration"
+                            TarefaId = 1183462847L,
+                            Titulo = "Criar Migration",
+                            posicaoVertical = 1
                         },
                         new
                         {
-                            Id = 1763875519L,
+                            Id = 192143266L,
+                            DataPrevisao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Descricao = "aaaaaaaaa",
+                            Projeto = "Company",
+                            TarefaId = 1183462847L,
+                            Titulo = "testee",
+                            posicaoVertical = 2
+                        },
+                        new
+                        {
+                            Id = 224151642L,
+                            DataPrevisao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Descricao = "bbbbbbbbbbbbbb",
+                            Projeto = "Company",
+                            TarefaId = 1183462847L,
+                            Titulo = "bbbbbbbbbb",
+                            posicaoVertical = 3
+                        },
+                        new
+                        {
+                            Id = 1871333590L,
+                            DataPrevisao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Descricao = "ccccccccccccc",
+                            Projeto = "Company",
+                            TarefaId = 1183462847L,
+                            Titulo = "cccccccccc",
+                            posicaoVertical = 4
+                        },
+                        new
+                        {
+                            Id = 417972493L,
                             DataPrevisao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "Colunas utilizadas: Código, nome, Descrição...",
                             Projeto = "Company",
-                            TarefaId = 1063927509L,
-                            Titulo = "Listagem de clientes"
+                            TarefaId = 379061123L,
+                            Titulo = "Listagem de clientes",
+                            posicaoVertical = 2
                         });
                 });
 
@@ -180,27 +215,27 @@ namespace MyTarefas.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1115573610L,
+                            Id = 1183462847L,
                             Descricao = "Aguardando"
                         },
                         new
                         {
-                            Id = 1740685173L,
+                            Id = 791352029L,
                             Descricao = "Em Andamento"
                         },
                         new
                         {
-                            Id = 683792581L,
+                            Id = 525112337L,
                             Descricao = "Pendência"
                         },
                         new
                         {
-                            Id = 175511127L,
+                            Id = 833452384L,
                             Descricao = "Finalizado"
                         },
                         new
                         {
-                            Id = 1063927509L,
+                            Id = 379061123L,
                             Descricao = "Outros"
                         });
                 });
@@ -223,7 +258,7 @@ namespace MyTarefas.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1519169388L,
+                            Id = 1435033545L,
                             Descricao = "Carlos"
                         });
                 });

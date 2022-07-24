@@ -19,7 +19,7 @@ namespace MyTarefas.Persistence
                 .Include(d => d.Departamento)
                 .Include(ac => ac.Acompanhamento);
 
-            query = query.AsNoTracking().Where(c => c.TarefaId == tarefaId);                         
+            query = query.AsNoTracking().Where(c => c.TarefaId == tarefaId).OrderBy(o => o.posicaoVertical);                         
 
             return await query.ToArrayAsync();
         }
