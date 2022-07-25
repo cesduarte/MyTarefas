@@ -26,37 +26,28 @@ namespace MyTarefas.Persistence.Helpers.Seed
                 {
                     TarefaId = tarefas.First().Id,
                     Id = randNum.Next(),
-                    Titulo = "testee",
+                    Titulo = "Listagem Clientes",
                     Projeto = "Company",
-                    Descricao = "aaaaaaaaa",
+                    Descricao = "Colunas utilizadas Código, nome, Descricao...",
                     posicaoVertical = 1,
                 },
                 new Card
                 {
                     TarefaId = tarefas.First().Id,
                     Id = randNum.Next(),
-                    Titulo = "bbbbbbbbbb",
+                    Titulo = "LançarNotas",
                     Projeto = "Company",
-                    Descricao = "bbbbbbbbbbbbbb",
+                    Descricao = "Selecionar notas fiscais, lançar no ERP.",
                     posicaoVertical = 2,
-                },
-                 new Card
-                {
-                    TarefaId = tarefas.First().Id,
-                    Id = randNum.Next(),
-                    Titulo = "cccccccccc",
-                    Projeto = "Company",
-                    Descricao = "ccccccccccccc",
-                    posicaoVertical = 3,
-                },
+                },               
                 new Card
                 {
                     TarefaId = tarefas.Last().Id,
                     Id = randNum.Next(),
-                    Titulo = "Listagem de clientes",
+                    Titulo = "Criar Migration",
                     Projeto = "Company",
                     Descricao = "Colunas utilizadas: Código, nome, Descrição...",
-                    posicaoVertical = 2,
+                    posicaoVertical = 0,
                 },
 
 

@@ -29,7 +29,15 @@ namespace MyTarefas.Application
 
                 _geralPersist.Add<Card>(card);
 
-                return await UpdateCardPosition(card, model.posicaoVertical, false, true);
+                await UpdateCardPosition(card, model.posicaoVertical, false, true);
+
+                if (await _geralPersist.SaveChangesAsync())
+                {
+                    var cardRetorno = await _cardPersist.GetByCardIdAsync(card.Id);
+
+                    return _mapper.Map<CardDto>(cardRetorno);
+                }
+                return null;
 
             }
             catch (Exception ex)
@@ -105,7 +113,19 @@ namespace MyTarefas.Application
         {
             Card cardAtual = await _cardPersist.GetByCardIdAsync(cardId);
 
-            return await UpdateCardPosition(cardAtual, posicaoVertical, true, false);
+            await UpdateCardPosition(cardAtual, posicaoVertical, true, false);  
+
+            cardAtual.TarefaId = tarefaId;                      
+
+            await UpdateCardPosition(cardAtual, posicaoVertical, false, true);
+
+            if (await _geralPersist.SaveChangesAsync())
+            {
+                var cardRetorno = await _cardPersist.GetByCardIdAsync(cardAtual.Id);
+
+                return _mapper.Map<CardDto>(cardRetorno);
+            }
+            return null;
 
 
         }
@@ -113,12 +133,19 @@ namespace MyTarefas.Application
         {
 
             Card cardAtual = await _cardPersist.GetByCardIdAsync(cardId);
-        
 
-            return await UpdateCardPosition(cardAtual, posicaoVertical, true, false);
+            await UpdateCardPosition(cardAtual, posicaoVertical, true, true);
+
+            if (await _geralPersist.SaveChangesAsync())
+            {
+                var cardRetorno = await _cardPersist.GetByCardIdAsync(cardAtual.Id);
+
+                return _mapper.Map<CardDto>(cardRetorno);
+            }
+            return null;
 
         }
-        public async Task<CardDto> UpdateCardPosition(Card cardAtual, int posicaoVertical, bool removerCards, bool inserirCards)
+        public async Task<bool> UpdateCardPosition(Card cardAtual, int posicaoVertical, bool removerCards, bool inserirCards)
         {
 
             try
@@ -142,14 +169,7 @@ namespace MyTarefas.Application
                         _geralPersist.Update<Card>(cards[i]);
                     }
                 }
-
-                if (await _geralPersist.SaveChangesAsync())
-                {
-                    var cardRetorno = await _cardPersist.GetByCardIdAsync(cardAtual.Id);
-
-                    return _mapper.Map<CardDto>(cardRetorno);
-                }
-                return null;
+                return true;
             }
             catch (Exception ex)
             {
