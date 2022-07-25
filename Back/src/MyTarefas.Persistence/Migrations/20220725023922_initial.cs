@@ -131,28 +131,28 @@ namespace MyTarefas.Persistence.Migrations
                 columns: new[] { "Id", "Descricao" },
                 values: new object[,]
                 {
-                    { 93663805L, "Finalizado" },
-                    { 125802249L, "Pendência" },
-                    { 336490917L, "Em Andamento" },
-                    { 1095109455L, "Outros" },
-                    { 1712405553L, "Aguardando" }
+                    { 318788161L, "Finalizado" },
+                    { 639860993L, "Aguardando" },
+                    { 1139418042L, "Em Andamento" },
+                    { 1769495653L, "Outros" },
+                    { 2129261870L, "Pendência" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Descricao" },
-                values: new object[] { 1855701605L, "Carlos" });
+                values: new object[] { 264459367L, "Carlos" });
 
             migrationBuilder.InsertData(
                 table: "Cards",
                 columns: new[] { "Id", "DataPrevisao", "Descricao", "Projeto", "TarefaId", "Titulo", "posicaoVertical" },
                 values: new object[,]
                 {
-                    { 416741983L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "aaaaaaaaa", "Company", 1712405553L, "testee", 1 },
-                    { 499607459L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ccccccccccccc", "Company", 1712405553L, "cccccccccc", 4 },
-                    { 878851122L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Usar a branch master, fazer pull, após isso...", "Company", 1712405553L, "Criar Migration", 0 },
-                    { 1158010731L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "bbbbbbbbbbbbbb", "Company", 1712405553L, "bbbbbbbbbb", 2 },
-                    { 1534802998L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Colunas utilizadas: Código, nome, Descrição...", "Company", 1095109455L, "Listagem de clientes", 2 }
+                    { 455870484L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Colunas utilizadas: Código, nome, Descrição...", "Company", 1769495653L, "Listagem de clientes", 2 },
+                    { 668031498L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "aaaaaaaaa", "Company", 639860993L, "testee", 1 },
+                    { 710789295L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Usar a branch master, fazer pull, após isso...", "Company", 639860993L, "Criar Migration", 0 },
+                    { 990342459L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "bbbbbbbbbbbbbb", "Company", 639860993L, "bbbbbbbbbb", 2 },
+                    { 1892751283L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ccccccccccccc", "Company", 639860993L, "cccccccccc", 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -160,14 +160,14 @@ namespace MyTarefas.Persistence.Migrations
                 columns: new[] { "Id", "CardId", "HorasPrevistas", "Saldo", "Status" },
                 values: new object[,]
                 {
-                    { 1911213533L, 1534802998L, "00:30", "00:10", 1 },
-                    { 2080741784L, 878851122L, "00:30", "00:10", 1 }
+                    { 521638193L, 455870484L, "00:30", "00:10", 1 },
+                    { 1200252569L, 710789295L, "00:30", "00:10", 1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "AcompanhamentoUsuario",
                 columns: new[] { "AcompanhamentoId", "UsuarioId" },
-                values: new object[] { 2080741784L, 1855701605L });
+                values: new object[] { 1200252569L, 264459367L });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Acompanhamentos_CardId",

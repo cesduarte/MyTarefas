@@ -20,6 +20,9 @@ namespace MyTarefas.Persistence.Contextos
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Card>().HasKey(p => p.Id);
+            
+
             modelBuilder.Entity<AcompanhamentoUsuario>()
                 .HasKey(AC => new {AC.AcompanhamentoId, AC.UsuarioId});
 

@@ -6,7 +6,7 @@ namespace MyTarefas.Application.Contratos
 {
     public interface ICardService
     {
-        Task<CardDto> AddCard(CardDto model, long tarefaId);
+        Task<CardDto> AddCard(CardDto model);
         Task<CardDto> UpdateCard(long cardId, CardDto model);
         Task<CardDto> UpdateCardHorizontal(long cardId, long tarefaId, int posicaoVertical);
         Task<CardDto> UpdateCardVertical(long cardId, int posicaoVertical);

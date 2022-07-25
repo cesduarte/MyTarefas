@@ -21,19 +21,17 @@ namespace MyTarefas.Application
             _mapper = mapper;
         }
 
-        public async Task<CardDto> AddCard(CardDto model, long tarefaId)
+        public async Task<CardDto> AddCard(CardDto model)
         {
             try
             {
-                var card = _mapper.Map<Card>(model);
-
-                card.TarefaId = tarefaId;
+                var card = _mapper.Map<Card>(model);                
 
                 _geralPersist.Add<Card>(card);
 
                 if (await _geralPersist.SaveChangesAsync())
                 {
-                    var cardRetorno = await _cardPersist.GetByCardIdAsync(model.Id);
+                    var cardRetorno = await _cardPersist.GetByCardIdAsync(card.Id);                    
 
                     return _mapper.Map<CardDto>(cardRetorno);
                 }
@@ -114,17 +112,17 @@ namespace MyTarefas.Application
 
             cardAtual.TarefaId = tarefaId;
 
-            return await UpdateCard(cardAtual, posicaoVertical, true);
+            return await UpdateCardPosition(cardAtual, posicaoVertical, true);
         }
         public async Task<CardDto> UpdateCardVertical(long cardId, int posicaoVertical)
         {
 
             Card cardAtual = await _cardPersist.GetByCardIdAsync(cardId);
 
-            return await UpdateCard(cardAtual, posicaoVertical);
+            return await UpdateCardPosition(cardAtual, posicaoVertical);
 
         }
-        private async Task<CardDto> UpdateCard(Card cardAtual, int posicaoVertical, bool isHorizontal = false)
+        private async Task<CardDto> UpdateCardPosition(Card cardAtual, int posicaoVertical, bool isHorizontal = false)
         {
 
             Card[] cards = await _cardPersist.GetAllByTarefaIdAsync(cardAtual.TarefaId);

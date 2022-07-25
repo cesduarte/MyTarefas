@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyTarefas.Persistence.Migrations
 {
     [DbContext(typeof(MyTarefasContext))]
-    [Migration("20220725011612_initial")]
+    [Migration("20220725023922_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,16 +54,16 @@ namespace MyTarefas.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 2080741784L,
-                            CardId = 878851122L,
+                            Id = 1200252569L,
+                            CardId = 710789295L,
                             HorasPrevistas = "00:30",
                             Saldo = "00:10",
                             Status = 1
                         },
                         new
                         {
-                            Id = 1911213533L,
-                            CardId = 1534802998L,
+                            Id = 521638193L,
+                            CardId = 455870484L,
                             HorasPrevistas = "00:30",
                             Saldo = "00:10",
                             Status = 1
@@ -87,8 +87,8 @@ namespace MyTarefas.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            AcompanhamentoId = 2080741784L,
-                            UsuarioId = 1855701605L
+                            AcompanhamentoId = 1200252569L,
+                            UsuarioId = 264459367L
                         });
                 });
 
@@ -127,51 +127,51 @@ namespace MyTarefas.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 878851122L,
+                            Id = 710789295L,
                             DataPrevisao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "Usar a branch master, fazer pull, após isso...",
                             Projeto = "Company",
-                            TarefaId = 1712405553L,
+                            TarefaId = 639860993L,
                             Titulo = "Criar Migration",
                             posicaoVertical = 0
                         },
                         new
                         {
-                            Id = 416741983L,
+                            Id = 668031498L,
                             DataPrevisao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "aaaaaaaaa",
                             Projeto = "Company",
-                            TarefaId = 1712405553L,
+                            TarefaId = 639860993L,
                             Titulo = "testee",
                             posicaoVertical = 1
                         },
                         new
                         {
-                            Id = 1158010731L,
+                            Id = 990342459L,
                             DataPrevisao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "bbbbbbbbbbbbbb",
                             Projeto = "Company",
-                            TarefaId = 1712405553L,
+                            TarefaId = 639860993L,
                             Titulo = "bbbbbbbbbb",
                             posicaoVertical = 2
                         },
                         new
                         {
-                            Id = 499607459L,
+                            Id = 1892751283L,
                             DataPrevisao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "ccccccccccccc",
                             Projeto = "Company",
-                            TarefaId = 1712405553L,
+                            TarefaId = 639860993L,
                             Titulo = "cccccccccc",
-                            posicaoVertical = 4
+                            posicaoVertical = 3
                         },
                         new
                         {
-                            Id = 1534802998L,
+                            Id = 455870484L,
                             DataPrevisao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "Colunas utilizadas: Código, nome, Descrição...",
                             Projeto = "Company",
-                            TarefaId = 1095109455L,
+                            TarefaId = 1769495653L,
                             Titulo = "Listagem de clientes",
                             posicaoVertical = 2
                         });
@@ -217,27 +217,27 @@ namespace MyTarefas.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1712405553L,
+                            Id = 639860993L,
                             Descricao = "Aguardando"
                         },
                         new
                         {
-                            Id = 336490917L,
+                            Id = 1139418042L,
                             Descricao = "Em Andamento"
                         },
                         new
                         {
-                            Id = 125802249L,
+                            Id = 2129261870L,
                             Descricao = "Pendência"
                         },
                         new
                         {
-                            Id = 93663805L,
+                            Id = 318788161L,
                             Descricao = "Finalizado"
                         },
                         new
                         {
-                            Id = 1095109455L,
+                            Id = 1769495653L,
                             Descricao = "Outros"
                         });
                 });
@@ -260,7 +260,7 @@ namespace MyTarefas.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1855701605L,
+                            Id = 264459367L,
                             Descricao = "Carlos"
                         });
                 });

@@ -31,14 +31,14 @@ public class CardController : ControllerBase
             return this.StatusCode(StatusCodes.Status500InternalServerError,
                 $"Erro ao tentar recuperar os Cards. Erro: {ex.Message}");
         }
-    }   
+    }
 
-     [HttpPost("{tarefaid}")]
-    public async Task<IActionResult> Post(CardDto model, long tarefaId)
+    [HttpPost]
+    public async Task<IActionResult> Post(CardDto model)
     {
         try
         {
-            var card = await _cardService.AddCard(model, tarefaId);
+            var card = await _cardService.AddCard(model);
             if (card == null) return NoContent();
 
             return Ok(card);
@@ -49,10 +49,10 @@ public class CardController : ControllerBase
                 $"Erro ao tentar adicionar a Card. Erro: {ex.Message}");
         }
     }
-    
 
-    [HttpPost("{id}/{posicaoVertical}")]
-    public async Task<IActionResult> PostVertical(long id, int posicaoVertical)
+
+    [HttpPut("{id}/{posicaoVertical}")]
+    public async Task<IActionResult> PutVertical(long id, int posicaoVertical)
     {
         try
         {
@@ -68,13 +68,13 @@ public class CardController : ControllerBase
                 $"Erro ao tentar atualizar Cards. Erro: {ex.Message}");
         }
     }
-     [HttpPost("{id}/{tarefaId}/{posicaoVertical}")]
-    public async Task<IActionResult> PosyHorizontal(long id,long tarefaId, int posicaoVertical)
+    [HttpPut("{id}/{tarefaId}/{posicaoVertical}")]
+    public async Task<IActionResult> PutHorizontal(long id, long tarefaId, int posicaoVertical)
     {
         try
         {
-            var card = await _cardService.UpdateCardHorizontal(id,tarefaId,posicaoVertical);
-            
+            var card = await _cardService.UpdateCardHorizontal(id, tarefaId, posicaoVertical);
+
             if (card == null) return NoContent();
 
             return Ok(card);
