@@ -20,7 +20,7 @@ namespace MyTarefas.Persistence.Helpers.Seed
                     Titulo = "Criar Migration",
                     Projeto = "Company",
                     Descricao = "Usar a branch master, fazer pull, após isso...",
-                    posicaoVertical = 1,
+                    posicaoVertical = 0,
                 },
                 new Card
                 {
@@ -29,7 +29,7 @@ namespace MyTarefas.Persistence.Helpers.Seed
                     Titulo = "testee",
                     Projeto = "Company",
                     Descricao = "aaaaaaaaa",
-                    posicaoVertical = 2,
+                    posicaoVertical = 1,
                 },
                 new Card
                 {
@@ -38,7 +38,7 @@ namespace MyTarefas.Persistence.Helpers.Seed
                     Titulo = "bbbbbbbbbb",
                     Projeto = "Company",
                     Descricao = "bbbbbbbbbbbbbb",
-                    posicaoVertical = 3,
+                    posicaoVertical = 2,
                 },
                  new Card
                 {
@@ -47,7 +47,7 @@ namespace MyTarefas.Persistence.Helpers.Seed
                     Titulo = "cccccccccc",
                     Projeto = "Company",
                     Descricao = "ccccccccccccc",
-                    posicaoVertical = 4,
+                    posicaoVertical = 3,
                 },
                 new Card
                 {
