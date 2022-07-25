@@ -39,7 +39,7 @@ public class CardController : ControllerBase
         try
         {
             var card = await _cardService.AddCard(model);
-            if (card == null) return NoContent();
+            if (card == null) return NoContent();                               
 
             return Ok(card);
         }
@@ -58,7 +58,7 @@ public class CardController : ControllerBase
         {
             var card = await _cardService.UpdateCardVertical(id, posicaoVertical);
 
-            if (card == null) return NoContent();
+            if (card == null) return NoContent();            
 
             return Ok(card);
         }

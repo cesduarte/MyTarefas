@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<MyTarefasContext>(
     o => o.UseNpgsql(builder.Configuration.GetConnectionString("default"), options =>{
-        options.SetPostgresVersion(new Version("9.5.2"));
+        options.SetPostgresVersion(new Version("9.5.2"));        
     })
 );
 

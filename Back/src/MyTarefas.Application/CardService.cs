@@ -25,13 +25,17 @@ namespace MyTarefas.Application
         {
             try
             {
-                var card = _mapper.Map<Card>(model);                
+                var card = _mapper.Map<Card>(model);
+
+                Card[] cards = await _cardPersist.GetAllByTarefaIdAsync(model.TarefaId);
+
+                card.posicaoVertical = cards.Last().posicaoVertical + 1;
 
                 _geralPersist.Add<Card>(card);
 
                 if (await _geralPersist.SaveChangesAsync())
                 {
-                    var cardRetorno = await _cardPersist.GetByCardIdAsync(card.Id);                    
+                    var cardRetorno = await _cardPersist.GetByCardIdAsync(card.Id);
 
                     return _mapper.Map<CardDto>(cardRetorno);
                 }
@@ -122,38 +126,46 @@ namespace MyTarefas.Application
             return await UpdateCardPosition(cardAtual, posicaoVertical);
 
         }
-        private async Task<CardDto> UpdateCardPosition(Card cardAtual, int posicaoVertical, bool isHorizontal = false)
+        public async Task<CardDto> UpdateCardPosition(Card cardAtual, int posicaoVertical, bool isHorizontal = false)
         {
 
-            Card[] cards = await _cardPersist.GetAllByTarefaIdAsync(cardAtual.TarefaId);
-
-            int posicoes = isHorizontal? cards.Length + 1 : cards.Length;
-
-            if (posicaoVertical > posicoes)
-                throw new Exception("A posicção vertical não pode ser maior que a quantidade de cards");
-
-            for (int i = 0; i < posicoes; i++)
+            try
             {
+                Card[] cards = await _cardPersist.GetAllByTarefaIdAsync(cardAtual.TarefaId);
 
-                if (posicaoVertical == i)
+                int posicoes = isHorizontal ? cards.Length + 1 : cards.Length;
+
+                if (posicaoVertical > posicoes)
+                    throw new Exception("A posição vertical não pode ser maior que a quantidade de cards");
+
+                for (int i = 0; i < posicoes; i++)
                 {
-                    cardAtual.posicaoVertical = posicaoVertical;
-                    _geralPersist.Update<Card>(cardAtual);
+
+                    if (posicaoVertical == i)
+                    {
+                        cardAtual.posicaoVertical = posicaoVertical;
+                        _geralPersist.Update<Card>(cardAtual);
+                    }
+                    else if (cards[i].Id != cardAtual.Id)
+                    {
+                        cards[i].posicaoVertical = i;
+                        _geralPersist.Update<Card>(cards[i]);
+                    }
                 }
-                else if (cards[i].Id != cardAtual.Id)
+
+                if (await _geralPersist.SaveChangesAsync())
                 {
-                    cards[i].posicaoVertical = i;
-                    _geralPersist.Update<Card>(cards[i]);
+                    var cardRetorno = await _cardPersist.GetByCardIdAsync(cardAtual.Id);
+
+                    return _mapper.Map<CardDto>(cardRetorno);
                 }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
 
-            if (await _geralPersist.SaveChangesAsync())
-            {
-                var cardRetorno = await _cardPersist.GetByCardIdAsync(cardAtual.Id);
-
-                return _mapper.Map<CardDto>(cardRetorno);
-            }
-            return null;
         }
     }
 }
