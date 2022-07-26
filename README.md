@@ -24,13 +24,13 @@ Inserir as credenciais de acesso **Back\src\MyTarefas.API\appsettings.json**
 Clone este repositório, navegue até a pasta **/back/src/MyTarefas.API** e execute o comando **dotnet run**
 
 ### Tecnologias Utilizadas
-Framework utilizados: O Framework utilizado foi .Net 6.0
 
-ORM utilizado: Entityframework;
+Framework utilizado: O Framework utilizado foi .Net 6.0 
+
+ORM utilizado: Foi utilizado o Entityframework para facilidade da criação e manutenção do banco de dados;
 
 Documentação: Swagger;
 
 Outros Libs: AutoMapper para mapear os objetos do Domain para os DTOs;
 
-Arquitetura e padroes de projeto:Inicialmente foi utilizado o DDD para facilitar o reúso dos elementos, também na camada de API utilizado o MVC para facilitar a manutenção;
-
+Arquitetura e padroes de projeto: Inicialmente foi utilizado o DDD para facilitar o reúso dos elementos, também na camada de API utilizado o MVC para facilitar a manutenção;
